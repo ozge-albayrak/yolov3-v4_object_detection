@@ -1,3 +1,8 @@
+'''
+Testing the custom trained yolov3 model to detect custom objects on test images. 
+ 
+'''
+# Import libraries
 import cv2
 import numpy as np
 import glob

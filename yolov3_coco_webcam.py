@@ -1,9 +1,13 @@
+'''
+Real-time object detection with WebCam using pre-trained yolov3 models. 
+ 
+'''
 # Import libraries
 import cv2
 import numpy as np
 import time
 
-# Load yolov3 - pre-trained coco images
+# Load yolov3 - pre-trained
 net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
 classes = []
 with open("coco.names", "r") as f:

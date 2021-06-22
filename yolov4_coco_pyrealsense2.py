@@ -1,19 +1,26 @@
+'''
+Real-time object detection with Intel RealSense LiDAR Camera using pre-trained yolov4 models. 
+ 
+'''
+# Import libraries
 import pyrealsense2 as rs
 from cv2 import cv2
 import numpy as np
-import sys, time, math
+import sys
+import time
+import math
 
-# Load yolov4
+# Load yolov4 - pretrained
 net = cv2.dnn.readNet("yolov4.weights", "yolov4.cfg")
 classes = []
 with open("coco.names", "r") as f:
     classes = [line.strip() for line in f.readlines()]
 
-print(classes)
-
 layer_names = net.getLayerNames()
 output_layers = [layer_names[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 colors = np.random.uniform(0, 255, size=(len(classes), 3))
+
+# Starting the Intel Camera
 
 # Configure camera streams from Intel Camera
 pipeline = rs.pipeline()
@@ -47,7 +54,7 @@ while True:
     height, width, channels = color_image.shape
     gray = cv2.cvtColor(color_image, cv2.COLOR_BGR2GRAY)
 
-# Detecting objects
+    # Detecting objects
     blob = cv2.dnn.blobFromImage(
         color_image, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
     net.setInput(blob)
@@ -84,7 +91,8 @@ while True:
             label = str(classes[class_ids[i]])
             color = colors[i]
             cv2.rectangle(color_image, (x, y), (x + w, y + h), color, 2)
-            cv2.putText(color_image, "{} [{:.1f}%]".format(label, float(confidence) * 100), (x, y - 5), font, 2, color, 3)
+            cv2.putText(color_image, "{} [{:.1f}%]".format(
+                label, float(confidence) * 100), (x, y - 5), font, 2, color, 3)
 
     cv2.imshow("Frame", color_image)
     key = cv2.waitKey(1)
