@@ -1,6 +1,6 @@
 # yolov3-v4_object_detection
 
-## Real Time Object Detection using YOLOv3 & v4 with OpenCV and Python and Training Custom Dataset on Google Colab 
+## Real Time Object Detection using YOLOv3 & v4 with OpenCV and Training Custom Dataset on Google Colab 
 This project implements an image and video capture (real-time with OpenCV), using WebCam or Intel RealSense LiDAR Camera, object detection classifier first using pre-trained yolov3 and yolov4 models and then our custom model to detect custom objects. 
 
 Additionally, an effective and straightforward approach for training your custom dataset for object detection on Google Colab with yolov3 & v4 using the Darknet library has been implemented. 
@@ -8,14 +8,13 @@ Additionally, an effective and straightforward approach for training your custom
 
 ## Train an object detector using YOLO on Google Drive 
 
-```
 1. Git clone the repo. 
+```
 git clone https://github.com/AlexeyAB/darknet
 
-
 ```
 
-## How to prepare the custom .cfg file for training YOLOv3 & v4
+## How to prepare the custom .cfg file for training YOLO
 You need to make the following changes in your config file (e.g. yolov4-custom.cfg):
 
 Under # Training 
