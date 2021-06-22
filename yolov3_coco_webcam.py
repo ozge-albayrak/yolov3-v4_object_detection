@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import time
 
-# Load yolov3
+# Load yolov3 - pre-trained coco images
 net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
 classes = []
 with open("coco.names", "r") as f:
